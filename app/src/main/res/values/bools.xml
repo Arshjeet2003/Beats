@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <bool name="checkbox_bass_defaultValue">true</bool>
+    
+    <bool name="checkbox_midrange_defaultValue">true</bool>
+    
+    <bool name="checkbox_treble_defaultValue">true</bool>
+
+</resources>

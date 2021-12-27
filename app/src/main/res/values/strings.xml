@@ -15,4 +15,24 @@
     <!-- Value in SharedPreferences for green color option -->
     <string name="pref_color_green_value" translatable="false">green</string>
     <string name="action_setting">Settings</string>
+
+    <string name="shown">Shown</string>
+    <string name="hidden">Hidden</string>
+
+    <string name="show_bass_key" translatable="false">show_bass</string>
+    <string name="show_midrange_key" translatable="false">show_mid_range</string>
+    <string name="show_treble_key" translatable="false">show_treble</string>
+
+    <string name="show_bass_label">Show Bass</string>
+    <string name="show_midrange_label">Show Mid range</string>
+    <string name="show_treble_label">Show Treble</string>
+    
+    <string name="size_label">Size Multiplier</string>
+    <string name="size_key" translatable="false">size</string>
+    <string name="size_default_value" translatable="false">1</string>
+
+    <string name="listPreference_default_value">Red</string>
+    <string name="listPreference_key" translatable="false">color</string>
+    <string name="listPreference_title">Shape Color</string>
+
 </resources>

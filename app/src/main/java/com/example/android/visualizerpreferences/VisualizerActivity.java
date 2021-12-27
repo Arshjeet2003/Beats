@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.example.android.visualizerpreferences.AudioVisuals.AudioInputReader;
 import com.example.android.visualizerpreferences.AudioVisuals.VisualizerView;
 
-public class VisualizerActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
+public class VisualizerActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final int MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE = 88;
     private VisualizerView mVisualizerView;
@@ -36,60 +36,65 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
     private void setupSharedPreferences() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        mVisualizerView.setShowBass(sharedPreferences.getBoolean("show_bass",true));
-        mVisualizerView.setShowMid(sharedPreferences.getBoolean("show_mid_range",false));
-        mVisualizerView.setShowTreble(sharedPreferences.getBoolean("show_treble",false));
-        mVisualizerView.setMinSizeScale(1);
+        mVisualizerView.setShowBass(sharedPreferences.getBoolean(getResources().getString(R.string.show_bass_key), getResources().getBoolean(R.bool.checkbox_bass_defaultValue)));
+        mVisualizerView.setShowMid(sharedPreferences.getBoolean(getResources().getString(R.string.show_midrange_key), getResources().getBoolean(R.bool.checkbox_midrange_defaultValue)));
+        mVisualizerView.setShowTreble(sharedPreferences.getBoolean(getResources().getString(R.string.show_treble_key), getResources().getBoolean(R.bool.checkbox_treble_defaultValue)));
+        loadSizeFromPreferences(sharedPreferences);
         loadColorFromPreferences(sharedPreferences);
 
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
-    private void loadColorFromPreferences(SharedPreferences sharedPreferences){
 
-        mVisualizerView.setColor(sharedPreferences.getString("color",getString(R.string.pref_color_red_value)));
+    private void loadColorFromPreferences(SharedPreferences sharedPreferences) {
+
+        mVisualizerView.setColor(sharedPreferences.getString(getResources().getString(R.string.listPreference_key), getString(R.string.pref_color_red_value)));
 
 
+    }
 
+    private void loadSizeFromPreferences(SharedPreferences sharedPreferences) {
+
+        float minSize = Float.parseFloat(sharedPreferences.getString(getString(R.string.size_key), getString(R.string.size_default_value)));
+        mVisualizerView.setMinSizeScale(minSize);
     }
 
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-        if(key.equals("show_bass")){
-            mVisualizerView.setShowBass(sharedPreferences.getBoolean(key,true));
-        }
-        else if(key.equals("show_mid_range")){
-            mVisualizerView.setShowMid(sharedPreferences.getBoolean(key,false));
-        }
-        else if(key.equals("show_treble")){
-            mVisualizerView.setShowTreble(sharedPreferences.getBoolean(key,false));
-        }
-        else if(key.equals("color")){
+        if (key.equals(getResources().getString(R.string.show_bass_key))) {
+            mVisualizerView.setShowBass(sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.checkbox_bass_defaultValue)));
+        } else if (key.equals(getResources().getString(R.string.show_midrange_key))) {
+            mVisualizerView.setShowMid(sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.checkbox_midrange_defaultValue)));
+        } else if (key.equals(getResources().getString(R.string.show_treble_key))) {
+            mVisualizerView.setShowTreble(sharedPreferences.getBoolean(key, getResources().getBoolean(R.bool.checkbox_treble_defaultValue)));
+        } else if (key.equals(getResources().getString(R.string.listPreference_key))) {
             loadColorFromPreferences(sharedPreferences);
+        } else if (key.equals(getResources().getString(R.string.size_key))) {
+            loadSizeFromPreferences(sharedPreferences);
         }
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         //To prevent memory leak
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.visualizer_menu,menu);
+        inflater.inflate(R.menu.visualizer_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_setting){
-            Intent startSettingActivity = new Intent(this,SettingsActivity.class);
+        if (id == R.id.action_setting) {
+            Intent startSettingActivity = new Intent(this, SettingsActivity.class);
             startActivity(startSettingActivity);
             return true;
         }
@@ -129,7 +134,7 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
             // And if we're on SDK M or later...
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // Ask again, nicely, for the permissions.
-                String[] permissionsWeNeed = new String[]{ Manifest.permission.RECORD_AUDIO };
+                String[] permissionsWeNeed = new String[]{Manifest.permission.RECORD_AUDIO};
                 requestPermissions(permissionsWeNeed, MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE);
             }
         } else {
@@ -140,7 +145,7 @@ public class VisualizerActivity extends AppCompatActivity implements SharedPrefe
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                          String permissions[],int[] grantResults) {
+                                           String permissions[], int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE: {

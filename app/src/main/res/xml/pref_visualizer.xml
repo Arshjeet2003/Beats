@@ -2,34 +2,45 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="show_bass"
-        android:summaryOff="Hidden"
-        android:summaryOn="Show Bass"
-        android:title="Show Bass"
+        android:defaultValue="@bool/checkbox_bass_defaultValue"
+        android:key="@string/show_bass_key"
+        android:summaryOff="@string/hidden"
+        android:summaryOn="@string/shown"
+        android:title="@string/show_bass_label"
         />
 
     <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="show_mid_range"
-        android:summaryOff="Shown"
-        android:summaryOn="Show Mid range"
-        android:title="Show Mid range"
+        android:defaultValue="@bool/checkbox_midrange_defaultValue"
+        android:key="@string/show_midrange_key"
+        android:summaryOff="@string/hidden"
+        android:summaryOn="@string/shown"
+        android:title="@string/show_midrange_label"
         />
 
     <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="show_treble"
-        android:summaryOff="Shown"
-        android:summaryOn="Show Treble"
-        android:title="Show Treble"
+        android:defaultValue="@bool/checkbox_treble_defaultValue"
+        android:key="@string/show_treble_key"
+        android:summaryOff="@string/hidden"
+        android:summaryOn="@string/shown"
+        android:title="@string/show_treble_label"
         />
+
+    <EditTextPreference
+
+        android:defaultValue="@string/size_default_value"
+        android:key="@string/size_key"
+        android:title="@string/size_label"
+
+
+        />
+
+
     <ListPreference
-        android:defaultValue="Red"
+        android:defaultValue="@string/listPreference_default_value"
         android:entries="@array/pref_color_options_labels"
         android:entryValues="@array/pref_color_options_values"
-        android:key="color"
-        android:title="Shape Color"
+        android:key="@string/listPreference_key"
+        android:title="@string/listPreference_title"
 
         />
 
