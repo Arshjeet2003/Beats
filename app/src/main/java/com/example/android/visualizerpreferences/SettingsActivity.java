@@ -7,6 +7,7 @@ import androidx.core.app.NavUtils;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+// hello
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
