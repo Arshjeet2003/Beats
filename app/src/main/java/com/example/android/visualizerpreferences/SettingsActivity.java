@@ -10,6 +10,7 @@ import android.view.MenuItem;
 // hello
 public class SettingsActivity extends AppCompatActivity {
 
+    //hello arsh
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
