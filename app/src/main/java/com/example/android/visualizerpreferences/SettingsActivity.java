@@ -11,6 +11,7 @@ import android.view.MenuItem;
 public class SettingsActivity extends AppCompatActivity {
 
     //hello arsh
+    //hello these changes are being made in the new branch.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
